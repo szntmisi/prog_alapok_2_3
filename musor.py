@@ -39,3 +39,17 @@ with open("musor.csv", "r", encoding="utf-8") as bemenet:
         zenek.append(zene)
         zene = {}
 # Itt fejeztük be
+
+print(f"{len(zenek)}db dal szerepel fájlban")
+
+statisztika = {}
+
+for zene in zenek:
+    if zene['eloado'] in statisztika:
+        statisztika[zene['eloado']] += 1
+    else:
+        statisztika[zene['eloado']] = 1
+        
+with open("musor_statisztika.txt", "w", encoding="utf-8")as kimenet:
+    for kulcs in statisztika:
+        print(f"{kulcs} - {statisztika[kulcs]}",file=kimenet)
